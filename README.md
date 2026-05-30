@@ -4,7 +4,7 @@ Website ini dibuat khusus sebagai kenang-kenangan perjalanan cinta Iqbaal Nanda 
 
 ## Fitur Website
 - **Desain Premium:** Menggunakan aesthetic *Glassmorphism* dengan warna gradasi romantis.
-- **Counter Dinamis:** Menghitung waktu secara *real-time* (Tahun, Bulan, Hari, Jam, Menit, Detik) sejak tanggal jadian kalian (19 September 2024).
+- **Counter Dinamis:** Menghitung waktu secara *real-time* (Tahun, Bulan, Hari, Jam, Menit, Detik) sejak tanggal jadian kalian (25 Maret 2020).
 - **Profil Pasangan:** Menampilkan nama dan tanggal lahir masing-masing.
 - **Galeri Kenangan:** Tempat untuk menaruh foto-foto memori. *(Saat ini menggunakan placeholder, kamu bisa menggantinya nanti).*
 - **Animasi Interaktif:** Terdapat tombol rahasia di bagian bawah yang akan memunculkan efek taburan hati (floating hearts) jika ditekan.
@@ -22,7 +22,7 @@ Website ini dibuat menggunakan HTML, CSS, dan JavaScript murni (Vanilla), sehing
 Berikut adalah langkah-langkahnya:
 1. Buat akun di [GitHub](https://github.com/) jika belum punya.
 2. Login, lalu buat repository baru (klik ikon **+** di pojok kanan atas -> **New repository**).
-3. Beri nama repository, misalnya `cinta-Silvi` atau nama sesukamu. Pastikan pengaturan privasinya diset ke **Public**.
+3. Beri nama repository, misalnya `MyLoveStory2` atau nama sesukamu. Pastikan pengaturan privasinya diset ke **Public**.
 4. Klik tombol **Create repository**.
 5. Di halaman berikutnya, klik **uploading an existing file**.
 6. Upload/drag-and-drop semua file dari folder `cinta` ini (`index.html`, `style.css`, `script.js`, dan file gambar jika ada) ke repository tersebut.
