@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iqbaal Nanda & Silvi - Perjalanan Cinta Kita</title>
+    <!-- SEO Best Practices -->
+    <meta name="description" content="Website kenangan cinta Iqbaal Nanda dan Silvi sejak 25 Mei 2020.">
+    <link rel="stylesheet" href="style.css?v=32">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cursor Glow (8D Aura Effect) -->
+    <div class="cursor-glow"></div>
+
+    <!-- 3D Vanta WebGL Background -->
+    <div id="vanta-bg" style="position: fixed; z-index: -2; width: 100vw; height: 100vh; top: 0; left: 0;"></div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="glass-card" style="position: fixed; top: -100px; left: 50%; transform: translateX(-50%); z-index: 9999; padding: 12px 25px; border-radius: 50px; background: rgba(0, 230, 118, 0.95); color: white; font-weight: bold; box-shadow: 0 10px 30px rgba(0,0,0,0.3); transition: top 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); display: flex; align-items: center; gap: 10px;">
+        <i class="fa-solid fa-circle-check" id="toast-icon" style="font-size: 1.2rem;"></i>
+        <span id="toast-message" style="font-size: 0.95rem;">Notifikasi</span>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher glass-card" style="position: fixed; bottom: 20px; left: 20px; z-index: 999; padding: 10px; display: flex; gap: 10px; border-radius: 30px; transition: transform 0.3s;" onmouseenter="this.style.transform='scale(1.05)'" onmouseleave="this.style.transform='scale(1)'">
+        <button class="theme-btn" data-theme="pink" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid white; background: #ff4b72; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;" title="Romantic Pink" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'"></button>
+        <button class="theme-btn" data-theme="ocean" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #00b4d8; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;" title="Ocean Blue" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'"></button>
+        <button class="theme-btn" data-theme="sunset" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #f77f00; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;" title="Sunset Gold" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'"></button>
+        <button class="theme-btn" data-theme="emerald" style="width: 30px; height: 30px; border-radius: 50%; border: none; background: #2a9d8f; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: transform 0.2s;" title="Emerald Green" onmouseenter="this.style.transform='translateY(-3px)'" onmouseleave="this.style.transform='translateY(0)'"></button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <ul>
+            <li><a href="#beranda" onclick="showPage('beranda'); return false;" class="nav-link">Beranda</a></li>
+            <li><a href="#galeri" onclick="showPage('galeri'); return false;" class="nav-link">Galeri</a></li>
+            <li><a href="#novel" onclick="showPage('novel'); return false;" class="nav-link">Novel</a></li>
+            <li><a href="#reels" onclick="showPage('reels'); return false;" class="nav-link">Reels</a></li>
+            <li><a href="#game" onclick="showPage('game'); return false;" class="nav-link">Mini Game</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page: Beranda -->
+    <div id="page-beranda" class="page-section active">
+    <!-- Profiles Section (Tentang Kita) - Moved to Top -->
+    <section id="profiles" class="profiles reveal" style="padding-top: 80px;">
+        <h2 class="section-title">Tentang Kita</h2>
+        <div class="profile-container" style="margin-top: 10px;">
+            <!-- Iqbaal Profile -->
+            <div class="glass-card profile-card" id="profile-iqbaal" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.4">
+                <div class="profile-card-hole"></div>
+                <div class="profile-img" style="position: relative;">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <img id="img-profile-iqbaal" src="https://placehold.co/400x400/ff4b72/white?text=I" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; top:0; left:0; z-index: 2; display: none;">
+                    <button class="btn-edit-profile" id="btn-edit-iqbaal" style="display: none; z-index: 3;" onclick="document.getElementById('input-profile-iqbaal').click()" title="Ubah Foto"><i class="fa-solid fa-camera"></i></button>
+                    <button class="btn-delete-profile" id="btn-delete-iqbaal" style="display: none; z-index: 3;" onclick="deleteProfile('iqbaal')" title="Hapus Foto"><i class="fa-solid fa-trash"></i></button>
+                    <input type="file" id="input-profile-iqbaal" style="display:none" accept="image/*" onchange="uploadProfile(this, 'iqbaal')">
+                </div>
+                <h3>Iqbaal Nanda</h3>
+                <p class="birthdate"><i class="fa-solid fa-cake-candles"></i> 24 Agustus 2003</p>
+                <p class="desc">"Aku berjanji akan selalu menjadi alasanmu tersenyum setiap hari."</p>
+            </div>
+            
+            <div class="heart-divider">
+                <i class="fa-solid fa-heart"></i>
+            </div>
+
+            <!-- Silvi Profile -->
+            <div class="glass-card profile-card" id="profile-silvi" data-tilt data-tilt-max="15" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.4">
+                <div class="profile-card-hole"></div>
+                <div class="profile-img" style="position: relative;">
+                    <i class="fa-solid fa-crown"></i>
+                    <img id="img-profile-silvi" src="https://placehold.co/400x400/ff4b72/white?text=S" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; position: absolute; top:0; left:0; z-index: 2; display: none;">
+                    <button class="btn-edit-profile" id="btn-edit-silvi" style="display: none; z-index: 3;" onclick="document.getElementById('input-profile-silvi').click()" title="Ubah Foto"><i class="fa-solid fa-camera"></i></button>
+                    <button class="btn-delete-profile" id="btn-delete-silvi" style="display: none; z-index: 3;" onclick="deleteProfile('silvi')" title="Hapus Foto"><i class="fa-solid fa-trash"></i></button>
+                    <input type="file" id="input-profile-silvi" style="display:none" accept="image/*" onchange="uploadProfile(this, 'silvi')">
+                </div>
+                <h3>Silvi </h3>
+                <p class="birthdate"><i class="fa-solid fa-cake-candles"></i> 12 juni 2004</p>
+                <p class="desc">"Duniaku menjadi lebih indah sejak ada kamu di dalamnya."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="glass-card hero-content">
+            <h1 class="title">Iqbaal Nanda <i class="fa-solid fa-heart heartbeat"></i> Silvi</h1>
+            <p class="subtitle">Setiap detik bersamamu adalah keajaiban.</p>
+            
+            <div class="time-together">
+                <h3>Kita Telah Bersama Selama:</h3>
+                <div class="counter" id="counter">
+                    <!-- JS will inject counter here -->
+                </div>
+                <p class="start-date">Sejak 25 Mei 2020</p>
+            </div>
+
+            <a href="#memories" class="btn">Lihat Our Story</a>
+        </div>
+    </section>
+
+    <!-- Story Section (formerly Memories) -->
+    <section id="memories" class="memories reveal">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">Momen-momen inti perjalanan kita.</p>
+        
+        <div id="story-carousel-wrapper" style="position: relative; width: 100%; max-width: 900px; height: 450px; margin: 0 auto; display: flex; align-items: center; justify-content: center; perspective: 1000px;">
+            <div id="gallery-container" style="width: 100%; height: 100%; position: relative; display: flex; align-items: center; justify-content: center; transform-style: preserve-3d;">
+                <!-- JS will inject gallery here -->
+                <div style="text-align: center; color: rgba(255,255,255,0.5);">Memuat kenangan...</div>
+            </div>
+            
+            <!-- Carousel Controls -->
+            <button class="carousel-btn" onclick="prevStory()" style="position: absolute; left: 0; z-index: 100; background: var(--primary-color); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transform: translateX(-50%); box-shadow: 0 5px 15px rgba(255,75,114,0.5);"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="carousel-btn" onclick="nextStory()" style="position: absolute; right: 0; z-index: 100; background: var(--primary-color); color: white; border: none; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; transform: translateX(50%); box-shadow: 0 5px 15px rgba(255,75,114,0.5);"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <div style="text-align: center; margin-top: 2.5rem;" id="admin-controls-container">
+            <button class="btn btn-unlock-akses" data-original-text="<i class='fa-solid fa-lock'></i> Mode Edit Story" style="padding: 10px 20px; font-size: 1rem;"><i class="fa-solid fa-lock"></i> Mode Edit Story</button>
+            
+            <div id="admin-dashboard" class="glass-card" style="display: none; max-width: 500px; margin: 20px auto 0; text-align: left; padding: 25px; border: 1px solid rgba(255,75,114,0.3);">
+                <h3 style="margin-bottom: 15px; color: var(--secondary-color); text-align: center;"><i class="fa-solid fa-upload"></i> Tambah Kenangan Baru</h3>
+                <form id="uploadForm">
+                    <input type="file" id="photo-file" accept="image/*" class="form-input" style="padding: 10px;" required>
+                    <input type="text" id="photo-caption" placeholder="Caption / Cerita di balik foto ini" class="form-input" required>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" id="btn-submit-upload">Upload Sekarang</button>
+                </form>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                    <p style="font-size: 0.85rem; color: #ff8fa3; margin-bottom: 10px;"><i class="fa-solid fa-circle-info"></i> Tombol hapus sekarang muncul di setiap foto di atas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Message -->
+    <footer id="message" class="footer reveal">
+        <div class="glass-card footer-content" data-tilt data-tilt-max="5" data-tilt-glare data-tilt-max-glare="0.2">
+            <h2 class="title">I Love You, Silvi </h2>
+            <p id="gombal-text" style="transition: all 0.3s ease;">Website ini dibuat khusus untukmu sebagai pengingat bahwa rasa sayangku akan terus tumbuh setiap harinya.</p>
+            <div class="floating-hearts" id="floating-hearts">
+                <!-- JS will generate floating hearts when hovered/clicked -->
+            </div>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <button class="btn pulse-btn" id="loveBtn" title="Berikan Cinta!"><i class="fa-solid fa-heart"></i></button>
+                <button class="btn" id="btn-gombal" style="background: var(--secondary-color);" title="Mantra Gombalan"><i class="fa-solid fa-wand-magic-sparkles"></i> Mantra Kangen</button>
+                <button class="btn" id="btn-runaway" style="background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); transition: transform 0.2s ease;">Jangan Ditekan 😡</button>
+            </div>
+        </div>
+        <p class="copyright">Dibuat dengan penuh cinta oleh Iqbaal Nanda &copy; 2026</p>
+    </footer>
+
+    </div> <!-- End Page Beranda -->
+
+    <!-- Page: Galeri -->
+    <div id="page-galeri" class="page-section" style="display: none;">
+        <section class="reveal" style="padding: 5rem 10%; text-align: center; min-height: 80vh;">
+            <h2 class="section-title">Galeri Foto</h2>
+            <p class="section-subtitle">Kumpulan lengkap memori manis kita.</p>
+            <div class="gallery-grid" id="koleksi-galeri-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; margin-top: 30px;">
+                <!-- JS will inject gallery photos here -->
+                <div style="grid-column: 1/-1; color: rgba(255,255,255,0.5);">Memuat galeri...</div>
+            </div>
+            
+            <button class="btn btn-unlock-akses" data-original-text="<i class='fa-solid fa-lock'></i> Mode Edit Galeri" style="padding: 10px 20px; font-size: 1rem; margin-bottom: 30px;"><i class="fa-solid fa-lock"></i> Mode Edit Galeri</button>
+            
+            <div id="admin-galeri-dashboard" class="glass-card" style="display: none; max-width: 500px; margin: 0 auto 30px; text-align: left; padding: 25px; border: 1px solid rgba(255,75,114,0.3);">
+                <h3 style="margin-bottom: 15px; color: var(--secondary-color); text-align: center;"><i class="fa-solid fa-upload"></i> Tambah Foto Baru</h3>
+                <form id="uploadGaleriForm">
+                    <input type="file" id="galeri-file" accept="image/*" class="form-input" style="padding: 10px;" required>
+                    <input type="text" id="galeri-caption" placeholder="Tulis caption ringan untuk foto ini" class="form-input">
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;" id="btn-submit-galeri">Upload Foto</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page: Novel -->
+    <div id="page-novel" class="page-section" style="display: none;">
+        <!-- Novel Cinta Section -->
+        <section id="novel" class="reveal" style="padding: 5rem 10%; position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; min-height: 80vh;">
+            <h2 class="section-title novel-heading">Novel Perjalanan Cinta</h2>
+        <p class="section-subtitle novel-subtitle">Lembaran kisah kasih kita berdua.</p>
+        
+        <div style="margin-bottom: 30px;">
+            <button class="btn" id="btn-add-novel" style="display: none; background: #00e676; margin-bottom: 20px;"><i class="fa-solid fa-plus"></i> Tulis Halaman Baru</button>
+        </div>
+
+        <div class="novel-book-stage" style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 8px 0 0;">
+            <div class="book-scaler">
+                <div id="novel-book" class="book">
+                    <!-- JS will inject book pages here -->
+                </div>
+            </div>
+            <div id="mobile-novel-spread" class="mobile-novel-spread" aria-live="polite"></div>
+        </div>
+
+        <!-- Tombol Navigasi Pindah ke Bawah -->
+        <div style="display: flex; gap: 30px; justify-content: center; margin-top: 0; z-index: 10;">
+            <button class="book-nav-btn" onclick="prevNovelPage()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="book-nav-btn" onclick="nextNovelPage()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+        
+        <p style="margin-top: 15px; font-size: 0.8rem; color: rgba(255,255,255,0.6);">Gunakan tombol di atas untuk membalik halaman buku</p>
+        
+        <div style="margin-top: 30px; margin-bottom: 20px;">
+            <button class="btn btn-unlock-akses" data-original-text="<i class='fa-solid fa-lock'></i> Mode Edit Novel" style="padding: 10px 20px; font-size: 1rem;"><i class="fa-solid fa-lock"></i> Mode Edit Novel</button>
+        </div>
+    </section>
+
+    </div> <!-- End Page Novel -->
+
+    <!-- Page: Reels -->
+    <div id="page-reels" class="page-section" style="display: none;">
+        <section class="reveal" style="padding: 5rem 10%; min-height: 80vh;">
+            <div style="text-align: center;">
+                <h2 class="section-title">Reels Cinta</h2>
+            <div class="reels-grid" id="reels-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; justify-content: center; align-items: start; margin-top: 30px; margin-bottom: 30px;">
+                <!-- JS will inject reels here -->
+                <div style="grid-column: 1/-1; text-align: center; color: rgba(255,255,255,0.5);">Memuat video...</div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="btn btn-unlock-akses" data-original-text="<i class='fa-solid fa-lock'></i> Mode Edit Reels" style="padding: 10px 20px; font-size: 1rem; margin-bottom: 30px; margin-top: 10px;"><i class="fa-solid fa-lock"></i> Mode Edit Reels</button>
+            </div>
+            
+            <div id="admin-reels-dashboard" class="glass-card" style="display: none; max-width: 500px; margin: 0 auto 30px; text-align: left; padding: 25px; border: 1px solid rgba(255,75,114,0.3);">
+                <h3 style="margin-bottom: 15px; color: var(--secondary-color); text-align: center;"><i class="fa-solid fa-plus"></i> Tambah Video Reels</h3>
+                <form id="uploadReelsForm">
+                    <input type="text" id="reels-url" placeholder="Link Video (TikTok / Instagram / YouTube)" class="form-input" style="padding: 10px;" required>
+                    <input type="text" id="reels-caption" placeholder="Caption Video" class="form-input" required>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">Tambahkan Video</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Page: Game -->
+    <div id="page-game" class="page-section" style="display: none;">
+        <!-- Mini Game Section -->
+        <section id="game" class="reveal" style="padding: 5rem 10%; position: relative; z-index: 2; min-height: 80vh;">
+        <h2 class="section-title">Arcade Cinta</h2>
+        <p class="section-subtitle">Pilih permainan seru untuk dimainkan bersama!</p>
+        
+        <!-- MENU PILIHAN GAME -->
+        <div id="game-menu" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+            <div class="glass-card game-card" onclick="openGame('tictactoe')" data-tilt>
+                <i class="fa-solid fa-table-cells-large game-icon"></i>
+                <h3>Tic-Tac-Love</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Adu strategi bareng ayang.</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('suit')" data-tilt>
+                <i class="fa-solid fa-hand-scissors game-icon"></i>
+                <h3>Suit Jari</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Siapa yang traktir hari ini?</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('memory')" data-tilt>
+                <i class="fa-solid fa-clone game-icon"></i>
+                <h3>Kartu Memori</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Tes ingatan cinta kalian.</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('aim')" data-tilt>
+                <i class="fa-solid fa-bullseye game-icon"></i>
+                <h3>Tangkap Cinta</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Seberapa gesit jari kamu?</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('calc')" data-tilt>
+                <i class="fa-solid fa-calculator game-icon"></i>
+                <h3>Kalkulator Jodoh</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Mesin pendeteksi jodoh 100%.</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('tod')" data-tilt>
+                <i class="fa-solid fa-comments game-icon"></i>
+                <h3>Truth or Dare</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Berani jujur atau tantangan?</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('roulette')" data-tilt>
+                <i class="fa-solid fa-utensils game-icon"></i>
+                <h3>Roulette Makan</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Roda penentu menu makan.</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('quiz')" data-tilt>
+                <i class="fa-solid fa-circle-question game-icon"></i>
+                <h3>Kuis Bucin</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Tes seberapa kenal si dia.</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('gacha')" data-tilt>
+                <i class="fa-solid fa-gift game-icon"></i>
+                <h3>Gacha Ayang</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Klik dan tagih hadiahnya!</p>
+            </div>
+            <div class="glass-card game-card" onclick="openGame('mine')" data-tilt>
+                <i class="fa-solid fa-bomb game-icon"></i>
+                <h3>Ranjau Hati</h3>
+                <p style="font-size: 0.8rem; opacity: 0.7;">Hindari patah hati!</p>
+            </div>
+        </div>
+
+        <!-- CONTAINER GAME YANG DIPILIH -->
+        <div id="active-game-container" style="display: none; margin-top: 1rem; text-align: center;">
+            <button class="btn" onclick="backToMenu()" style="margin-bottom: 20px; background: rgba(255,255,255,0.1);"><i class="fa-solid fa-arrow-left"></i> Kembali ke Menu</button>
+            
+            <!-- Area Tic-Tac-Toe -->
+            <div id="game-tictactoe" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 15px;">Tic-Tac-Love</h3>
+                <div id="game-status" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 1.5rem; color: var(--text-light); text-shadow: 0 0 10px var(--primary-color);">Iqbaal Nanda (❤️)</div>
+                
+                <div class="game-board" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 25px;">
+                    <div class="game-cell" data-index="0"></div>
+                    <div class="game-cell" data-index="1"></div>
+                    <div class="game-cell" data-index="2"></div>
+                    <div class="game-cell" data-index="3"></div>
+                    <div class="game-cell" data-index="4"></div>
+                    <div class="game-cell" data-index="5"></div>
+                    <div class="game-cell" data-index="6"></div>
+                    <div class="game-cell" data-index="7"></div>
+                    <div class="game-cell" data-index="8"></div>
+                </div>
+                
+                <button class="btn" id="btn-reset-game" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); width: 100%;"><i class="fa-solid fa-rotate-right"></i> Main Ulang</button>
+            </div>
+
+            <!-- Area Suit Jari -->
+            <div id="game-suit" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Suit Lawan Ayang (Bot)</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;">Menang = dibayarin kencan! 🍕</p>
+                
+                <div style="display: flex; justify-content: space-around; font-size: 4rem; margin-bottom: 20px;">
+                    <div id="suit-player" style="transition: transform 0.3s;">❓</div>
+                    <div style="font-size: 2rem; align-self: center;">VS</div>
+                    <div id="suit-bot" style="transition: transform 0.3s;">❓</div>
+                </div>
+                
+                <h4 id="suit-result" style="color: var(--primary-color); margin-bottom: 25px; height: 30px;">Pilih senjatamu!</h4>
+                
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="btn suit-btn" onclick="playSuit('✌️')" style="padding: 10px 15px; font-size: 1.5rem;">✌️</button>
+                    <button class="btn suit-btn" onclick="playSuit('✊')" style="padding: 10px 15px; font-size: 1.5rem;">✊</button>
+                    <button class="btn suit-btn" onclick="playSuit('✋')" style="padding: 10px 15px; font-size: 1.5rem;">✋</button>
+                </div>
+            </div>
+
+            <!-- Area Kartu Memori -->
+            <div id="game-memory" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Cocokkan Gambar</h3>
+                <h4 id="memory-moves" style="margin-bottom: 20px; color: var(--primary-color);">Langkah: 0</h4>
+                
+                <div id="memory-board" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 300px; margin: 0 auto;">
+                    <!-- JS will generate 16 cards -->
+                </div>
+                
+                <button class="btn" onclick="initMemoryGame()" style="margin-top: 20px; width: 100%;"><i class="fa-solid fa-rotate-right"></i> Acak Ulang Kartu</button>
+            </div>
+            
+            <!-- Area Tangkap Cinta (Aim Trainer) -->
+            <div id="game-aim" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Tangkap Cinta</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;">Klik 💖 sebanyak mungkin dalam 15 detik!</p>
+                
+                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 10px; font-size: 1.2rem;">
+                    <div>Waktu: <span id="aim-time" style="color: var(--primary-color);">15</span>s</div>
+                    <div>Skor: <span id="aim-score" style="color: #00e676;">0</span></div>
+                </div>
+                
+                <div id="aim-area" style="width: 100%; height: 300px; background: rgba(0,0,0,0.2); border-radius: 15px; position: relative; overflow: hidden; cursor: crosshair; border: 2px solid rgba(255,255,255,0.1);">
+                    <button id="aim-start-btn" class="btn pulse-btn" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">Mulai Game</button>
+                    <!-- Heart target injected via JS -->
+                </div>
+            </div>
+
+            <!-- Area Kalkulator Jodoh -->
+            <div id="game-calc" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Mesin Pencari Jodoh</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;">Tingkat akurasi 100% di atas rata-rata.</p>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 15px; align-items: center; justify-content: center;">
+                    <input type="text" id="calc-name1" class="form-input" style="width: 40%; text-align: center;" placeholder="Nama 1" value="Iqbaal Nanda">
+                    <span style="font-size: 1.5rem; animation: pulse 1s infinite;">❤️</span>
+                    <input type="text" id="calc-name2" class="form-input" style="width: 40%; text-align: center;" placeholder="Nama 2" value="Silvi ">
+                </div>
+                
+                <button class="btn pulse-btn" onclick="calculateLove()" style="width: 100%; margin-bottom: 20px;"><i class="fa-solid fa-calculator"></i> Hitung Kecocokan</button>
+                
+                <div id="calc-result" style="display: none; padding: 15px; background: rgba(0,0,0,0.2); border-radius: 15px;">
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--primary-color); text-shadow: 0 0 15px var(--primary-color);" id="calc-percent">0%</div>
+                    <p id="calc-msg" style="font-size: 1.1rem; margin-top: 5px;"></p>
+                </div>
+            </div>
+
+            <!-- Area Truth or Dare -->
+            <div id="game-tod" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 20px;">Truth or Dare Bucin</h3>
+                <div id="tod-card" style="background: rgba(255,255,255,0.1); border: 2px dashed rgba(255,255,255,0.3); border-radius: 15px; padding: 30px 20px; min-height: 150px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 20px; transition: all 0.3s;">
+                    Pilih Truth (Jujur) atau Dare (Tantangan)!
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: center;">
+                    <button class="btn" onclick="playToD('truth')" style="background: #00b4d8;"><i class="fa-solid fa-comment"></i> Truth</button>
+                    <button class="btn" onclick="playToD('dare')" style="background: #ff4b72;"><i class="fa-solid fa-fire"></i> Dare</button>
+                </div>
+            </div>
+
+            <!-- Area Roulette Makan -->
+            <div id="game-roulette" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Roulette Makanan</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;">Biar nggak pusing ditanya "Makan apa hari ini?"</p>
+                
+                <div style="position: relative; width: 220px; height: 220px; margin: 0 auto 20px;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); font-size: 2.5rem; z-index: 10; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">👇</div>
+                    <div id="roulette-wheel" style="width: 100%; height: 100%; border-radius: 50%; border: 5px solid white; background: conic-gradient(#ff4b72 0 60deg, #00b4d8 60deg 120deg, #f77f00 120deg 180deg, #2a9d8f 180deg 240deg, #8b22ff 240deg 300deg, #e9c46a 300deg 360deg); transition: transform 3s cubic-bezier(0.17, 0.67, 0.12, 0.99); box-shadow: 0 0 20px rgba(0,0,0,0.3);"></div>
+                </div>
+                
+                <h4 id="roulette-result" style="color: var(--primary-color); margin-bottom: 20px; font-size: 1.5rem; height: 35px; text-shadow: 0 0 10px rgba(255,255,255,0.3);">Putar Rodanya!</h4>
+                <button class="btn pulse-btn" id="btn-spin" onclick="spinRoulette()" style="width: 100%;"><i class="fa-solid fa-sync"></i> Putar Roda</button>
+            </div>
+
+            <!-- Area Kuis Bucin -->
+            <div id="game-quiz" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Kuis Seberapa Kenal</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;" id="quiz-status">Suruh ayang jawab jujur!</p>
+                
+                <div id="quiz-question" style="font-size: 1.2rem; font-weight: bold; margin-bottom: 20px; min-height: 60px;">Siap diuji kecocokannya?</div>
+                
+                <div id="quiz-options" style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="btn" id="btn-quiz-start" onclick="startQuiz()" style="width: 100%;">Mulai Kuis</button>
+                </div>
+            </div>
+
+            <!-- Area Gacha Hadiah -->
+            <div id="game-gacha" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem; text-align: center;">
+                <h3 style="margin-bottom: 5px;">Gacha Hadiah Spesial</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 20px;">Klik kotaknya untuk melihat dapat hadiah apa hari ini!</p>
+                
+                <div id="gacha-box" onclick="openGacha()" style="font-size: 8rem; cursor: pointer; transition: transform 0.1s; display: inline-block; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.5));">🎁</div>
+                
+                <div id="gacha-result" style="display: none; margin-top: 20px;">
+                    <h4 style="font-size: 1.5rem; color: #00e676; margin-bottom: 10px;" id="gacha-prize"></h4>
+                    <p style="font-size: 0.9rem;">Screen-shot ini dan tagih janjinya sekarang! 📸</p>
+                    <button class="btn" onclick="resetGacha()" style="margin-top: 15px; background: rgba(255,255,255,0.1);">Main Lagi Besok (Bohong)</button>
+                </div>
+            </div>
+
+            <!-- Area Ranjau Hati -->
+            <div id="game-mine" class="glass-card" style="display: none; max-width: 400px; margin: 0 auto; padding: 2rem;">
+                <h3 style="margin-bottom: 5px;">Ranjau Hati</h3>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 10px;">Cari 12 💖, jangan sampai kepencet Patah Hati 💔!</p>
+                <div style="font-weight: bold; margin-bottom: 15px; font-size: 1.2rem;">Hati Terkumpul: <span id="mine-score" style="color:#00e676;">0</span> / 12</div>
+                
+                <div id="mine-board" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 300px; margin: 0 auto 20px;">
+                    <!-- JS will generate 16 squares -->
+                </div>
+                <button class="btn" onclick="initMineGame()" style="width: 100%;"><i class="fa-solid fa-rotate-right"></i> Ulang Game</button>
+            </div>
+            
+        </div>
+    </section>
+    </div> <!-- End Page Game -->
+
+
+
+    <!-- PIN Auth Modal -->
+    <div class="modal" id="pinModal">
+        <div class="glass-card modal-content" style="text-align: center;">
+            <span class="close-modal" id="closePinModal">&times;</span>
+            <div style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 10px;">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <h3 style="margin-bottom: 15px; color: #fff;">Buka Akses</h3>
+            <p style="margin-bottom: 20px; font-size: 0.9rem; color: rgba(255,255,255,0.7);">Masukkan sandi rahasia untuk mengupload dan menghapus foto:</p>
+            <input type="password" id="pin-input" placeholder=" " class="form-input" style="text-align: center;">
+            <button class="btn" id="btn-check-pin" style="width: 100%; margin-top: 10px;">Buka Akses</button>
+            <p id="pin-error" style="color: #ff4b72; font-size: 0.8rem; margin-top: 10px; display: none;">Sandi salah!</p>
+        </div>
+    </div>
+
+    <!-- Custom Delete Confirm Modal -->
+    <div id="deleteModal" class="modal" style="display: none;">
+        <div class="glass-card modal-content" style="max-width: 400px; text-align: center; padding: 30px;">
+            <i class="fa-solid fa-triangle-exclamation" style="font-size: 3rem; color: #ff4b72; margin-bottom: 20px;"></i>
+            <h3 style="margin-bottom: 10px;" id="delete-modal-title">Hapus Kenangan?</h3>
+            <p style="color: var(--text-muted); margin-bottom: 20px;" id="delete-modal-desc">Kamu yakin ingin menghapus momen ini selamanya?</p>
+            <div style="display: flex; gap: 15px; justify-content: center;">
+                <button class="btn" id="btn-cancel-delete" style="background: rgba(255,255,255,0.1);">Batal</button>
+                <button class="btn" id="btn-confirm-delete" style="background: #ff4b72;">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lightbox Modal for Gallery -->
+    <div id="lightbox-modal" style="display: none; z-index: 9999; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: zoom-out;">
+        <span id="close-lightbox" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer;">&times;</span>
+        <img id="lightbox-img" style="max-width: 90%; max-height: 80vh; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2); transition: transform 0.3s ease; object-fit: contain;">
+        <div id="lightbox-caption" style="position: absolute; bottom: 30px; text-align: center; color: white; width: 100%; font-size: 1.2rem; font-family: 'Poppins', sans-serif; text-shadow: 0 2px 5px rgba(0,0,0,0.8);"></div>
+    </div>
+
+    <!-- Lightbox Modal for Reels -->
+    <div id="reels-lightbox-modal" style="display: none; z-index: 9999; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); justify-content: center; align-items: center;">
+        <span id="close-reels-lightbox" style="position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10000;">&times;</span>
+        <div style="width: 100%; max-width: 450px; display: flex; flex-direction: column; align-items: center; padding: 20px;">
+            <iframe id="reels-lightbox-iframe" width="100%" height="650" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 15px; background: black; max-height: 80vh;"></iframe>
+            <div id="reels-lightbox-caption" style="margin-top: 20px; text-align: center; color: white; font-size: 1.1rem; font-family: 'Poppins', sans-serif;"></div>
+        </div>
+    </div>
+
+    <!-- Novel Add Modal -->
+    <div class="modal" id="novelModal">
+        <div class="glass-card modal-content" style="text-align: left;">
+            <h3 style="color: #fff; margin-bottom: 15px; text-align: center;"><i class="fa-solid fa-pen-fancy"></i> <span id="novel-modal-title">Tulis Cerita Baru</span></h3>
+            <p id="novel-modal-desc" style="margin-bottom: 15px; color: rgba(255,255,255,0.7); font-size: 0.85rem; text-align: center;">Halaman ini akan diletakkan setelah halaman terakhir yang sudah ada.</p>
+            
+            <input type="file" id="novel-file" accept="image/*" class="form-input" style="padding: 10px; width: 100%; margin-bottom: 10px;" required>
+            <textarea id="novel-text" class="form-input" style="width: 100%; height: 120px; resize: none; margin-bottom: 15px;" placeholder="Tulis ceritamu di sini... (gunakan ENTER untuk baris baru)" required></textarea>
+            
+            <div style="display: flex; gap: 10px;">
+                <button class="btn" id="btn-novel-cancel" style="background: rgba(255,255,255,0.1); flex: 1;">Batal</button>
+                <button class="btn" id="btn-novel-submit" style="background: var(--primary-color); flex: 1;">Simpan Cerita</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3D Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    
+    <script src="script.js?v=26"></script>
+</body>
+</html>
