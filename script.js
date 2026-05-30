@@ -1013,7 +1013,7 @@ if (btnCheckPin) {
             if (btnAddNovel) btnAddNovel.style.display = 'inline-block';
             if (typeof renderNovel === 'function') renderNovel();
 
-            showToast("Mode Edit berhasil dibuka!");
+            showToast("Yeyyy Kamu Masih Ingat ya");
         } else {
             pinError.style.display = 'block';
         }
