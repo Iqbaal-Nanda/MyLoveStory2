@@ -30,7 +30,7 @@ Berikut adalah langkah-langkahnya:
 8. Sekarang pergi ke tab **Settings** di repository tersebut.
 9. Di menu sebelah kiri, klik bagian **Pages**.
 10. Di bagian *Build and deployment*, pada opsi *Source*, pilih branch **main** (atau **master**) dan biarkan foldernya `/ (root)`. Lalu klik **Save**.
-11. Tunggu 1-2 menit. Refresh halaman tersebut, dan akan muncul link website kamu di bagian atas (misalnya `https://namakamu.github.io/cinta-shakilla`).
+11. Tunggu 1-2 menit. Refresh halaman tersebut, dan akan muncul link website kamu di bagian atas (misalnya `https://iqbaal-nanda.github.io/MyLoveStory2/`).
 
 Selesai! Kamu bisa membagikan link tersebut ke pacar kamu.
  
